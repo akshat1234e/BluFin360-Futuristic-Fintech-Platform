@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { 
-  Twitter, 
-  Linkedin, 
-  Github, 
-  Mail, 
+import {
+  Twitter,
+  Linkedin,
+  Github,
+  Mail,
 
   ArrowRight,
   Shield,
@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
+import { Logo3D } from './Logo3D';
 
 
 export function Footer() {
@@ -64,12 +65,8 @@ export function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="flex items-center space-x-3 mb-6">
-                  <img 
-                    src="/blufin-icon.svg" 
-                    alt="BluFin360 Logo" 
-                    className="h-8 object-contain"
-                  />
+                <div className="flex items-center mb-6">
+                  <Logo3D size="md" animated={false} />
                 </div>
                 
                 <p className="text-white/80 mb-6 leading-relaxed">

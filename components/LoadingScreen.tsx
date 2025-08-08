@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Logo3D } from './Logo3D';
 
 
 interface LoadingScreenProps {
@@ -77,15 +78,8 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-8"
         >
-          <div className="relative">
-            <img 
-              src="/blufin-icon.svg" 
-              alt="BluFin360" 
-              className="w-32 h-32 mx-auto object-contain"
-              style={{
-                filter: 'drop-shadow(0 0 30px rgba(0, 212, 255, 0.4)) drop-shadow(0 0 60px rgba(0, 255, 136, 0.3))'
-              }}
-            />
+          <div className="relative flex justify-center">
+            <Logo3D size="xl" animated={true} className="text-6xl" />
             
             {/* Orbiting Elements */}
             <motion.div

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import { Logo3D } from './Logo3D';
 
 
 const products = [
@@ -54,22 +55,17 @@ export function Navigation() {
       className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4"
     >
       <div className="glass rounded-2xl px-6 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:w-full">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
+            className="flex items-center"
           >
-            <img 
-              src="/blufin-icon.svg" 
-              alt="BluFin360 Icon" 
-              className="w-8 h-8 object-contain"
-            />
-            <span className="text-xl font-black text-white">BluFin360</span>
+            <Logo3D size="md" animated={false} />
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden lg:flex items-center justify-center space-x-8 lg:col-start-2">
             <motion.div
               className="relative"
               onMouseEnter={() => setIsProductsOpen(true)}
@@ -87,7 +83,7 @@ export function Navigation() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-96 glass rounded-xl p-4"
+                    className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-96 glass rounded-xl p-4"
                   >
                     <div className="grid grid-cols-1 gap-3">
                       {products.map((product, index) => (
@@ -131,7 +127,7 @@ export function Navigation() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center justify-end space-x-4 lg:col-start-3">
             <Button variant="ghost" className="text-white hover:text-[#00D4FF] hover:bg-white/5">
               Login
             </Button>

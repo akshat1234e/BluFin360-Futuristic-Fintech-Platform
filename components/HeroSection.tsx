@@ -3,10 +3,34 @@ import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 
+// TypeScript declarations for UnicornStudio
+declare global {
+  interface Window {
+    UnicornStudio: {
+      isInitialized: boolean;
+      init?: () => void;
+    };
+  }
+}
+
 export function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Load UnicornStudio script
+    if (!window.UnicornStudio) {
+      window.UnicornStudio = { isInitialized: false };
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js";
+      script.onload = function() {
+        if (!window.UnicornStudio.isInitialized && window.UnicornStudio.init) {
+          window.UnicornStudio.init();
+          window.UnicornStudio.isInitialized = true;
+        }
+      };
+      (document.head || document.body).appendChild(script);
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -193,22 +217,19 @@ export function HeroSection() {
           transition={{ duration: 1.5, delay: 1 }}
           className="relative mx-auto w-80 h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px]"
         >
-          {/* Central Sphere */}
-          <div className="absolute inset-0 rounded-full glass-blue glow-blue floating">
-            <div className="absolute inset-4 rounded-full bg-gradient-to-br from-[#00D4FF]/30 to-[#00FF88]/30 flex items-center justify-center backdrop-blur-sm">
-              <div className="text-center px-4">
-                <img 
-                  src="/blufin-icon.svg" 
-                  alt="BluFin360 Icon" 
-                  className="w-24 h-24 mx-auto mb-6 object-contain filter drop-shadow-lg opacity-90 hover:opacity-100 transition-all duration-500"
-                  style={{
-                    filter: 'drop-shadow(0 0 20px rgba(0, 212, 255, 0.3)) drop-shadow(0 0 40px rgba(0, 255, 136, 0.2))'
-                  }}
-                />
-                <div className="text-xl md:text-2xl lg:text-3xl font-black text-white mb-2 leading-tight">BluFin360</div>
-                <div className="text-sm md:text-base text-white/80 font-medium">Financial Hub</div>
-              </div>
-            </div>
+          {/* UnicornStudio Animation */}
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+            <div
+              data-us-project="Nd0JQ7fhzgLprcKaaPQx"
+              className="w-full h-full unicorn-studio-container"
+              style={{
+                width: '120%',
+                height: '120%',
+                maxWidth: '600px',
+                maxHeight: '600px',
+                transform: 'scale(1.2)'
+              }}
+            />
           </div>
 
           {/* Orbiting Elements */}
@@ -228,16 +249,20 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 1.5 + item.delay * 0.2 }}
               className="absolute"
               style={{
-                transform: `rotate(${index * 51.43}deg) translateY(-200px) rotate(-${index * 51.43}deg)`,
+                transform: `rotate(${index * (360 / 7)}deg) translateY(-220px) rotate(-${index * (360 / 7)}deg)`,
                 top: '50%',
                 left: '50%',
-                marginTop: '-12px',
-                marginLeft: '-40px'
+                marginTop: '-15px',
+                marginLeft: '-60px'
               }}
             >
-              <div 
-                className="w-20 h-6 rounded-full glass text-xs flex items-center justify-center font-medium text-white pulse-slow"
-                style={{ borderColor: item.color }}
+              <div
+                className="w-30 h-9 rounded-full glass text-sm flex items-center justify-center font-medium text-white pulse-slow px-4"
+                style={{
+                  borderColor: item.color,
+                  minWidth: '120px',
+                  boxShadow: `0 0 20px ${item.color}40`
+                }}
               >
                 {item.name}
               </div>

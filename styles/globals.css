@@ -375,3 +375,66 @@
     color-scheme: dark;
   }
 }
+
+/* UnicornStudio Customizations */
+@layer utilities {
+  /* Hide UnicornStudio watermark */
+  .unicorn-studio-container [data-us-watermark],
+  .unicorn-studio-container .us-watermark,
+  .unicorn-studio-container a[href*="unicornstudio"],
+  .unicorn-studio-container div[style*="position: absolute"][style*="bottom"],
+  .unicorn-studio-container div[style*="position: fixed"][style*="bottom"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  /* Ensure animation fills container properly */
+  .unicorn-studio-container canvas,
+  .unicorn-studio-container svg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+  }
+
+  /* 3D Logo Enhancements */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .text-3d-shadow {
+    text-shadow:
+      0 1px 0 #001122,
+      0 2px 0 #001122,
+      0 3px 0 #001122,
+      0 4px 0 #001122,
+      0 5px 0 #001122,
+      0 6px 1px rgba(0, 0, 0, 0.1),
+      0 0 5px rgba(0, 212, 255, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 3px 5px rgba(0, 0, 0, 0.2),
+      0 5px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Ensure gradient text works properly */
+  .logo-3d-gradient {
+    background: linear-gradient(135deg, #00D4FF 0%, #00FF88 50%, #00D4FF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Fallback for browsers without gradient support */
+  @supports not (background-clip: text) {
+    .logo-3d-gradient {
+      color: #00D4FF;
+      -webkit-text-fill-color: #00D4FF;
+    }
+  }
+}
