@@ -1,0 +1,74 @@
+<svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Green gradient for left isometric block -->
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FF88;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00E676;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00C853;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Purple gradient for right isometric block -->
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6D28D9;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Darker shades for depth -->
+    <linearGradient id="greenDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00C853;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00A040;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="purpleDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6D28D9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5B21B6;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Green isometric block (left) -->
+  <g transform="translate(10, 15)">
+    <!-- Top face -->
+    <path d="M0 20 L20 5 L40 20 L20 35 Z" fill="url(#greenGradient)" filter="url(#glow)"/>
+    <!-- Right face -->
+    <path d="M20 35 L40 20 L40 40 L20 55 Z" fill="url(#greenDark)"/>
+    <!-- Left face -->
+    <path d="M0 20 L20 35 L20 55 L0 40 Z" fill="url(#greenGradient)" opacity="0.8"/>
+  </g>
+  
+  <!-- Purple isometric block (right, overlapping) -->
+  <g transform="translate(35, 15)">
+    <!-- Top face -->
+    <path d="M0 20 L20 5 L40 20 L20 35 Z" fill="url(#purpleGradient)" filter="url(#glow)"/>
+    <!-- Right face -->
+    <path d="M20 35 L40 20 L40 40 L20 55 Z" fill="url(#purpleDark)"/>
+    <!-- Left face -->
+    <path d="M0 20 L20 35 L20 55 L0 40 Z" fill="url(#purpleGradient)" opacity="0.8"/>
+  </g>
+  
+  <!-- Text: "blu" in black -->
+  <text x="90" y="35" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="24" font-weight="700" fill="#000000" letter-spacing="-0.5px">blu</text>
+  
+  <!-- Text: "Fin360" in purple -->
+  <text x="130" y="35" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="24" font-weight="700" fill="#8B5CF6" letter-spacing="-0.5px">Fin360</text>
+  
+  <!-- Tagline (controlled by CSS class for conditional display) -->
+  <text x="90" y="55" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="12" font-weight="400" fill="#9CA3AF" letter-spacing="0.5px" class="logo-tagline">
+    Compliant. Connected. Convenient
+  </text>
+  
+  <!-- Subtle connecting line between blocks -->
+  <line x1="50" y1="50" x2="75" y2="50" stroke="url(#greenGradient)" stroke-width="1" opacity="0.3"/>
+</svg>
