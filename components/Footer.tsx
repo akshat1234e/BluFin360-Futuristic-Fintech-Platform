@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Logo3D } from './Logo3D';
+import { LogoSVG } from './LogoSVG';
 
 
 export function Footer() {
@@ -66,7 +66,7 @@ export function Footer() {
                 transition={{ duration: 0.6 }}
               >
                 <div className="flex items-center mb-6">
-                  <Logo3D size="md" animated={false} />
+                  <LogoSVG size="md" animated={false} showTagline={true} />
                 </div>
                 
                 <p className="text-white/80 mb-6 leading-relaxed">

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
-import { Logo3D } from './Logo3D';
+import { LogoSVG } from './LogoSVG';
 
 
 const products = [
@@ -61,7 +61,7 @@ export function Navigation() {
             whileHover={{ scale: 1.05 }}
             className="flex items-center"
           >
-            <Logo3D size="md" animated={false} />
+            <LogoSVG size="md" animated={false} showTagline={false} />
           </motion.div>
 
           {/* Desktop Navigation - Centered */}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Logo3D } from './Logo3D';
+import { LogoSVG } from './LogoSVG';
 
 
 interface LoadingScreenProps {
@@ -79,7 +79,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           className="mb-8"
         >
           <div className="relative flex justify-center">
-            <Logo3D size="xl" animated={true} className="text-6xl" />
+            <LogoSVG size="xl" animated={true} showTagline={false} />
             
             {/* Orbiting Elements */}
             <motion.div

@@ -51,6 +51,12 @@ export function Logo3D({
     sizeClasses[size]
   );
 
+  const gradientClasses = cn(
+    "bg-gradient-to-br from-[#00D4FF] via-[#00FF88] to-[#00D4FF]",
+    "bg-clip-text text-transparent",
+    "relative z-10"
+  );
+
   const containerClasses = cn(
     "relative inline-flex items-center",
     "transform-gpu perspective-1000",

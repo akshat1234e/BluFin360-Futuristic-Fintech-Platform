@@ -5,6 +5,10 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+
+  // Set the correct base path for GitHub Pages deployment
+  base: '/BluFin360-Futuristic-Fintech-Platform/',
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./"),
@@ -19,6 +23,8 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
+    // Ensure clean build
+    emptyOutDir: true,
   },
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
 })
