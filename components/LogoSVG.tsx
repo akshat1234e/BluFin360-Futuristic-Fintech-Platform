@@ -60,90 +60,90 @@ export function LogoSVG({
   } : {};
 
   return (
-    <motion.div 
+    <motion.div
       className={containerClasses}
       {...motionProps}
     >
-      <svg 
-        viewBox="0 0 240 80" 
-        fill="none" 
+      <svg
+        viewBox="0 0 240 80"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
         <defs>
           {/* Green gradient for left isometric block */}
-          <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id={`greenGradient-${size}`} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style={{stopColor:"#00FF88", stopOpacity:1}} />
             <stop offset="50%" style={{stopColor:"#00E676", stopOpacity:1}} />
             <stop offset="100%" style={{stopColor:"#00C853", stopOpacity:1}} />
           </linearGradient>
-          
+
           {/* Purple gradient for right isometric block */}
-          <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id={`purpleGradient-${size}`} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style={{stopColor:"#8B5CF6", stopOpacity:1}} />
             <stop offset="50%" style={{stopColor:"#7C3AED", stopOpacity:1}} />
             <stop offset="100%" style={{stopColor:"#6D28D9", stopOpacity:1}} />
           </linearGradient>
-          
+
           {/* Darker shades for depth */}
-          <linearGradient id="greenDark" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id={`greenDark-${size}`} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style={{stopColor:"#00C853", stopOpacity:1}} />
             <stop offset="100%" style={{stopColor:"#00A040", stopOpacity:1}} />
           </linearGradient>
-          
-          <linearGradient id="purpleDark" x1="0%" y1="0%" x2="100%" y2="100%">
+
+          <linearGradient id={`purpleDark-${size}`} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style={{stopColor:"#6D28D9", stopOpacity:1}} />
             <stop offset="100%" style={{stopColor:"#5B21B6", stopOpacity:1}} />
           </linearGradient>
-          
+
           {/* Glow effect filter */}
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <filter id={`glow-${size}`} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-            <feMerge> 
+            <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
         </defs>
-        
+
         {/* Green isometric block (left) */}
         <g transform="translate(10, 15)">
           {/* Top face */}
-          <path d="M0 20 L20 5 L40 20 L20 35 Z" fill="url(#greenGradient)" filter="url(#glow)"/>
+          <path d="M0 20 L20 5 L40 20 L20 35 Z" fill={`url(#greenGradient-${size})`} filter={`url(#glow-${size})`}/>
           {/* Right face */}
-          <path d="M20 35 L40 20 L40 40 L20 55 Z" fill="url(#greenDark)"/>
+          <path d="M20 35 L40 20 L40 40 L20 55 Z" fill={`url(#greenDark-${size})`}/>
           {/* Left face */}
-          <path d="M0 20 L20 35 L20 55 L0 40 Z" fill="url(#greenGradient)" opacity="0.8"/>
+          <path d="M0 20 L20 35 L20 55 L0 40 Z" fill={`url(#greenGradient-${size})`} opacity="0.8"/>
         </g>
-        
+
         {/* Purple isometric block (right, overlapping) */}
         <g transform="translate(35, 15)">
           {/* Top face */}
-          <path d="M0 20 L20 5 L40 20 L20 35 Z" fill="url(#purpleGradient)" filter="url(#glow)"/>
+          <path d="M0 20 L20 5 L40 20 L20 35 Z" fill={`url(#purpleGradient-${size})`} filter={`url(#glow-${size})`}/>
           {/* Right face */}
-          <path d="M20 35 L40 20 L40 40 L20 55 Z" fill="url(#purpleDark)"/>
+          <path d="M20 35 L40 20 L40 40 L20 55 Z" fill={`url(#purpleDark-${size})`}/>
           {/* Left face */}
-          <path d="M0 20 L20 35 L20 55 L0 40 Z" fill="url(#purpleGradient)" opacity="0.8"/>
+          <path d="M0 20 L20 35 L20 55 L0 40 Z" fill={`url(#purpleGradient-${size})`} opacity="0.8"/>
         </g>
-        
+
         {/* Text: "blu" in black */}
-        <text x="90" y="35" fontFamily="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+        <text x="90" y="35" fontFamily="Inter, -apple-system, BlinkMacSystemFont, sans-serif"
               fontSize="24" fontWeight="700" fill="#000000" letterSpacing="-0.5px">blu</text>
-        
+
         {/* Text: "Fin360" in purple */}
-        <text x="130" y="35" fontFamily="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+        <text x="130" y="35" fontFamily="Inter, -apple-system, BlinkMacSystemFont, sans-serif"
               fontSize="24" fontWeight="700" fill="#8B5CF6" letterSpacing="-0.5px">Fin360</text>
-        
+
         {/* Tagline (conditional) */}
         {showTagline && (
-          <text x="90" y="55" fontFamily="Inter, -apple-system, BlinkMacSystemFont, sans-serif" 
+          <text x="90" y="55" fontFamily="Inter, -apple-system, BlinkMacSystemFont, sans-serif"
                 fontSize="12" fontWeight="400" fill="#9CA3AF" letterSpacing="0.5px">
             Compliant. Connected. Convenient
           </text>
         )}
-        
+
         {/* Subtle connecting line between blocks */}
-        <line x1="50" y1="50" x2="75" y2="50" stroke="url(#greenGradient)" strokeWidth="1" opacity="0.3"/>
+        <line x1="50" y1="50" x2="75" y2="50" stroke={`url(#greenGradient-${size})`} strokeWidth="1" opacity="0.3"/>
       </svg>
     </motion.div>
   );
