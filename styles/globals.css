@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@900&family=Inter:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 14px;
+  
+  /* BluFin360 Color System */
+  --blufin-black: #000000;
+  --blufin-green: #00FF88;
+  --blufin-blue: #00D4FF;
+  --blufin-white: #FFFFFF;
+  
+  /* Dark mode dominance */
+  --background: var(--blufin-black);
+  --foreground: var(--blufin-white);
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: var(--blufin-white);
+  --popover: var(--blufin-black);
+  --popover-foreground: var(--blufin-white);
+  --primary: var(--blufin-green);
+  --primary-foreground: var(--blufin-black);
+  --secondary: rgba(0, 212, 255, 0.1);
+  --secondary-foreground: var(--blufin-blue);
+  --muted: rgba(255, 255, 255, 0.1);
+  --muted-foreground: rgba(255, 255, 255, 0.7);
+  --accent: var(--blufin-blue);
+  --accent-foreground: var(--blufin-black);
+  --destructive: #ff4444;
+  --destructive-foreground: var(--blufin-white);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: transparent;
+  --input-background: rgba(255, 255, 255, 0.05);
+  --switch-background: rgba(255, 255, 255, 0.2);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --font-weight-black: 900;
+  --ring: var(--blufin-blue);
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: var(--blufin-black);
+  --foreground: var(--blufin-white);
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: var(--blufin-white);
+  --popover: var(--blufin-black);
+  --popover-foreground: var(--blufin-white);
+  --primary: var(--blufin-green);
+  --primary-foreground: var(--blufin-black);
+  --secondary: rgba(0, 212, 255, 0.1);
+  --secondary-foreground: var(--blufin-blue);
+  --muted: rgba(255, 255, 255, 0.1);
+  --muted-foreground: rgba(255, 255, 255, 0.7);
+  --accent: var(--blufin-blue);
+  --accent-foreground: var(--blufin-black);
+  --destructive: #ff4444;
+  --destructive-foreground: var(--blufin-white);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: var(--blufin-blue);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  /* BluFin360 Custom Colors */
+  --color-blufin-black: var(--blufin-black);
+  --color-blufin-green: var(--blufin-green);
+  --color-blufin-blue: var(--blufin-blue);
+  --color-blufin-white: var(--blufin-white);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+  }
+}
+
+/**
+ * BluFin360 Typography System
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: var(--font-weight-black);
+      font-size: 4rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: var(--font-weight-black);
+      font-size: 3rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: var(--font-weight-black);
+      font-size: 2rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: var(--font-weight-black);
+      font-size: 1.5rem;
+      line-height: 1.4;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.6;
+    }
+
+    label {
+      font-family: 'Inter', sans-serif;
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-family: 'Inter', sans-serif;
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-family: 'Inter', sans-serif;
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+/* Enhanced Glassmorphism Classes */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .glass:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .glass-blue {
+    background: rgba(0, 212, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .glass-blue:hover {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+  
+  .glass-green {
+    background: rgba(0, 255, 136, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .glass-green:hover {
+    background: rgba(0, 255, 136, 0.15);
+    border-color: rgba(0, 255, 136, 0.3);
+  }
+  
+  .glow-blue {
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .glow-blue:hover {
+    box-shadow: 0 0 80px rgba(0, 212, 255, 0.4);
+  }
+  
+  .glow-green {
+    box-shadow: 0 0 50px rgba(0, 255, 136, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .glow-green:hover {
+    box-shadow: 0 0 80px rgba(0, 255, 136, 0.4);
+  }
+  
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #00D4FF, #0066FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-green {
+    background: linear-gradient(135deg, #00FF88, #00CC66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .floating {
+    animation: floating 6s ease-in-out infinite;
+  }
+  
+  .pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Enhanced Magnetic Hover Effect */
+  .magnetic {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .magnetic:hover {
+    transform: translateY(-8px);
+  }
+  
+  /* Smooth Reveal Animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Premium Button Effects */
+  .btn-premium {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .btn-premium:hover::before {
+    left: 100%;
+  }
+  
+  /* Enhanced Focus States */
+  .focus-ring {
+    transition: all 0.2s ease;
+  }
+  
+  .focus-ring:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.4);
+  }
+}
+
+/* Advanced Animations */
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Performance Optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Dark Mode Enhancements */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}

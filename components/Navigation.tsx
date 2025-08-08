@@ -1,0 +1,189 @@
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, Menu, X } from 'lucide-react';
+import { Button } from './ui/button';
+
+
+const products = [
+  {
+    name: 'API-First Banking',
+    description: 'Modular API blocks with data streams',
+    color: 'blue'
+  },
+  {
+    name: 'Digital Escrow',
+    description: 'Secure digital vault with automation',
+    color: 'green'
+  },
+  {
+    name: 'Treasury as a Service',
+    description: 'Smart dashboard with predictive analytics',
+    color: 'blue'
+  },
+  {
+    name: 'Regtech as a Service',
+    description: 'Compliance command center',
+    color: 'green'
+  },
+  {
+    name: 'Virtual Account Solutions',
+    description: 'Interconnected virtual accounts',
+    color: 'blue'
+  },
+  {
+    name: 'BNPL Experience',
+    description: 'Instant credit engine',
+    color: 'green'
+  },
+  {
+    name: 'SME Credit Solutions',
+    description: 'Digital lending platform',
+    color: 'blue'
+  }
+];
+
+export function Navigation() {
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4"
+    >
+      <div className="glass rounded-2xl px-6 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center space-x-2"
+          >
+            <img 
+              src="/blufin-icon.svg" 
+              alt="BluFin360 Icon" 
+              className="w-8 h-8 object-contain"
+            />
+            <span className="text-xl font-black text-white">BluFin360</span>
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            <motion.div
+              className="relative"
+              onMouseEnter={() => setIsProductsOpen(true)}
+              onMouseLeave={() => setIsProductsOpen(false)}
+            >
+              <button className="flex items-center space-x-1 text-white hover:text-[#00D4FF] transition-colors">
+                <span>Products</span>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              <AnimatePresence>
+                {isProductsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-96 glass rounded-xl p-4"
+                  >
+                    <div className="grid grid-cols-1 gap-3">
+                      {products.map((product, index) => (
+                        <motion.div
+                          key={product.name}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                          className="group p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
+                        >
+                          <div className="flex items-start space-x-3">
+                            <div className={`w-2 h-2 rounded-full mt-2 ${
+                              product.color === 'blue' ? 'bg-[#00D4FF]' : 'bg-[#00FF88]'
+                            }`}></div>
+                            <div>
+                              <h4 className="text-white group-hover:text-[#00D4FF] transition-colors font-medium">
+                                {product.name}
+                              </h4>
+                              <p className="text-sm text-white/70 mt-1">
+                                {product.description}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            <button className="text-white hover:text-[#00D4FF] transition-colors">
+              Solutions
+            </button>
+            <button className="text-white hover:text-[#00D4FF] transition-colors">
+              Developers
+            </button>
+            <button className="text-white hover:text-[#00D4FF] transition-colors">
+              Pricing
+            </button>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <Button variant="ghost" className="text-white hover:text-[#00D4FF] hover:bg-white/5">
+              Login
+            </Button>
+            <Button className="bg-[#00FF88] text-black hover:bg-[#00FF88]/90 font-medium">
+              Get Started
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden text-white p-2"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden mt-4 border-t border-white/10 pt-4"
+            >
+              <div className="space-y-4">
+                <button className="block w-full text-left text-white hover:text-[#00D4FF]">
+                  Products
+                </button>
+                <button className="block w-full text-left text-white hover:text-[#00D4FF]">
+                  Solutions
+                </button>
+                <button className="block w-full text-left text-white hover:text-[#00D4FF]">
+                  Developers
+                </button>
+                <button className="block w-full text-left text-white hover:text-[#00D4FF]">
+                  Pricing
+                </button>
+                <div className="pt-4 border-t border-white/10 space-y-2">
+                  <Button variant="ghost" className="w-full text-white hover:bg-white/5">
+                    Login
+                  </Button>
+                  <Button className="w-full bg-[#00FF88] text-black hover:bg-[#00FF88]/90">
+                    Get Started
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.nav>
+  );
+}
