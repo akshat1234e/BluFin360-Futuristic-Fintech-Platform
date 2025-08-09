@@ -292,6 +292,12 @@ export function ProductsShowcase() {
                             navigate('/treasury');
                           } else if (activeProduct.id === 'regtech') {
                             navigate('/regtech');
+                          } else if (activeProduct.id === 'virtual-accounts') {
+                            navigate('/virtual-accounts');
+                          } else if (activeProduct.id === 'bnpl') {
+                            navigate('/bnpl');
+                          } else if (activeProduct.id === 'sme-credit') {
+                            navigate('/sme-credit');
                           }
                         }}
                       >
@@ -299,6 +305,9 @@ export function ProductsShowcase() {
                          activeProduct.id === 'escrow' ? 'Explore Digital Escrow' :
                          activeProduct.id === 'treasury' ? 'Explore Treasury' :
                          activeProduct.id === 'regtech' ? 'Explore Regtech' :
+                         activeProduct.id === 'virtual-accounts' ? 'Explore Virtual Accounts' :
+                         activeProduct.id === 'bnpl' ? 'Explore BNPL' :
+                         activeProduct.id === 'sme-credit' ? 'Explore SME Credit' :
                          'Explore Product'}
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Button>

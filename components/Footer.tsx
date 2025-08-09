@@ -22,9 +22,9 @@ export function Footer() {
     { name: 'Digital Escrow', route: '/digital-escrow' },
     { name: 'Treasury as a Service', route: '/treasury' },
     { name: 'Regtech as a Service', route: '/regtech' },
-    { name: 'Virtual Accounts', route: null },
-    { name: 'BNPL Experience', route: null },
-    { name: 'SME Credit Solutions', route: null }
+    { name: 'Virtual Accounts', route: '/virtual-accounts' },
+    { name: 'BNPL Experience', route: '/bnpl' },
+    { name: 'SME Credit Solutions', route: '/sme-credit' }
   ];
 
   const handleProductClick = (link: typeof productLinks[0]) => {

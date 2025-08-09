@@ -14,6 +14,9 @@ import { ApiBankingPage } from './components/ApiBankingPage';
 import { DigitalEscrowPage } from './components/DigitalEscrowPage';
 import { TreasuryPage } from './components/TreasuryPage';
 import { RegtechPage } from './components/RegtechPage';
+import { VirtualAccountsPage } from './components/VirtualAccountsPage';
+import { BNPLPage } from './components/BNPLPage';
+import { SMECreditPage } from './components/SMECreditPage';
 
 // Homepage component
 function HomePage() {
@@ -114,6 +117,9 @@ export default function App() {
                   <Route path="/digital-escrow" element={<DigitalEscrowPage />} />
                   <Route path="/treasury" element={<TreasuryPage />} />
                   <Route path="/regtech" element={<RegtechPage />} />
+                  <Route path="/virtual-accounts" element={<VirtualAccountsPage />} />
+                  <Route path="/bnpl" element={<BNPLPage />} />
+                  <Route path="/sme-credit" element={<SMECreditPage />} />
                 </Routes>
               </Suspense>
             </main>

@@ -40,21 +40,21 @@ const products = [
     name: 'Virtual Account Solutions',
     description: 'Interconnected virtual accounts',
     color: 'blue',
-    route: null
+    route: '/virtual-accounts'
   },
   {
     id: 'bnpl',
     name: 'BNPL Experience',
     description: 'Instant credit engine',
     color: 'green',
-    route: null
+    route: '/bnpl'
   },
   {
     id: 'sme-credit',
     name: 'SME Credit Solutions',
     description: 'Digital lending platform',
     color: 'blue',
-    route: null
+    route: '/sme-credit'
   }
 ];
 
