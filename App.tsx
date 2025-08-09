@@ -1,4 +1,5 @@
 import { useState, useEffect, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { LoadingScreen } from './components/LoadingScreen';
 import { ScrollProgress } from './components/ScrollProgress';
@@ -9,6 +10,19 @@ import { ProductsShowcase } from './components/ProductsShowcase';
 import { TechnologyStack } from './components/TechnologyStack';
 import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
+import { ApiBankingPage } from './components/ApiBankingPage';
+
+// Homepage component
+function HomePage() {
+  return (
+    <>
+      <HeroSection />
+      <ProductsShowcase />
+      <TechnologyStack />
+      <FinalCTA />
+    </>
+  );
+}
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -63,7 +77,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <Router basename="/BluFin360-Futuristic-Fintech-Platform">
+      <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Loading Screen */}
       <AnimatePresence mode="wait">
         {isLoading && isReady && (
@@ -75,6 +90,11 @@ export default function App() {
       <AnimatePresence>
         {!isLoading && (
           <>
+            {/* Accessibility Skip Link */}
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
+
             {/* Enhanced UI Components */}
             <ScrollProgress />
             <CustomCursor />
@@ -83,23 +103,19 @@ export default function App() {
             <Navigation />
             
             {/* Main Content */}
-            <main className="relative">
+            <main id="main-content" className="relative">
               <Suspense fallback={<div className="min-h-screen bg-black" />}>
-                <HeroSection />
-                
-                {/* Products Showcase */}
-                <ProductsShowcase />
-                
-                {/* Technology Stack */}
-                <TechnologyStack />
-                
-                {/* Enhanced Call to Action Section */}
-                <FinalCTA />
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/api-banking" element={<ApiBankingPage />} />
+                </Routes>
               </Suspense>
             </main>
-            
-            {/* Footer */}
-            <Footer />
+
+            {/* Footer - Only show on homepage */}
+            <Routes>
+              <Route path="/" element={<Footer />} />
+            </Routes>
 
             {/* Performance Monitoring */}
             <div id="analytics-ready" style={{ display: 'none' }} />
@@ -113,42 +129,150 @@ export default function App() {
         * {
           scroll-behavior: smooth;
         }
-        
+
         /* Enhanced selection colors */
         ::selection {
           background: rgba(0, 212, 255, 0.3);
           color: white;
         }
-        
+
+        ::-moz-selection {
+          background: rgba(0, 212, 255, 0.3);
+          color: white;
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
           width: 8px;
         }
-        
+
         ::-webkit-scrollbar-track {
           background: rgba(255, 255, 255, 0.05);
         }
-        
+
         ::-webkit-scrollbar-thumb {
           background: linear-gradient(to bottom, #00D4FF, #00FF88);
           border-radius: 4px;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
           background: linear-gradient(to bottom, #00FF88, #00D4FF);
         }
-        
+
+        /* Firefox scrollbar */
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: #00D4FF rgba(255, 255, 255, 0.05);
+        }
+
         /* Prevent text selection on interactive elements */
         button, .cursor-pointer {
           user-select: none;
           -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
         }
-        
+
         /* Enhanced focus states */
         button:focus-visible,
-        a:focus-visible {
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
           outline: 2px solid #00D4FF;
           outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+          .glass {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border: 2px solid rgba(255, 255, 255, 0.4) !important;
+          }
+
+          .text-white\\/80 {
+            color: white !important;
+          }
+        }
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+          }
+        }
+
+        /* Performance optimizations */
+        .glass {
+          will-change: transform;
+          transform: translateZ(0);
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+          * {
+            -webkit-tap-highlight-color: transparent;
+          }
+
+          .parallax-element {
+            transform: none !important;
+          }
+        }
+
+        /* Print styles */
+        @media print {
+          .fixed, .absolute {
+            position: static !important;
+          }
+
+          .bg-black {
+            background: white !important;
+            color: black !important;
+          }
+
+          .text-white {
+            color: black !important;
+          }
+        }
+
+        /* Loading states */
+        .loading {
+          pointer-events: none;
+          opacity: 0.7;
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+
+        /* Skip link for keyboard navigation */
+        .skip-link {
+          position: absolute;
+          top: -40px;
+          left: 6px;
+          background: #00D4FF;
+          color: black;
+          padding: 8px;
+          text-decoration: none;
+          border-radius: 4px;
+          z-index: 1000;
+        }
+
+        .skip-link:focus {
+          top: 6px;
         }
         
         /* Reduced motion preferences */
@@ -182,6 +306,7 @@ export default function App() {
           }
         }
       `}</style>
-    </div>
+      </div>
+    </Router>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { 
   CreditCard, 
   Shield, 
@@ -137,6 +138,7 @@ const products = [
 
 export function ProductsShowcase() {
   const [activeProduct, setActiveProduct] = useState(products[0]);
+  const navigate = useNavigate();
 
   return (
     <section className="py-32 relative overflow-hidden">
@@ -275,14 +277,19 @@ export function ProductsShowcase() {
                     </div>
 
                     <div className="flex space-x-4">
-                      <Button 
+                      <Button
                         className={`${
-                          activeProduct.color === 'blue' 
-                            ? 'bg-[#00D4FF] hover:bg-[#00D4FF]/90' 
+                          activeProduct.color === 'blue'
+                            ? 'bg-[#00D4FF] hover:bg-[#00D4FF]/90'
                             : 'bg-[#00FF88] hover:bg-[#00FF88]/90'
                         } text-black font-medium group`}
+                        onClick={() => {
+                          if (activeProduct.id === 'api-banking') {
+                            navigate('/api-banking');
+                          }
+                        }}
                       >
-                        Explore Product
+                        {activeProduct.id === 'api-banking' ? 'Explore API Banking' : 'Explore Product'}
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Button>
                       <Button variant="ghost" className="text-white hover:bg-white/5">
