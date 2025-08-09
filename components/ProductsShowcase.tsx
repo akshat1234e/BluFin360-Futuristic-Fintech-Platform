@@ -286,10 +286,20 @@ export function ProductsShowcase() {
                         onClick={() => {
                           if (activeProduct.id === 'api-banking') {
                             navigate('/api-banking');
+                          } else if (activeProduct.id === 'escrow') {
+                            navigate('/digital-escrow');
+                          } else if (activeProduct.id === 'treasury') {
+                            navigate('/treasury');
+                          } else if (activeProduct.id === 'regtech') {
+                            navigate('/regtech');
                           }
                         }}
                       >
-                        {activeProduct.id === 'api-banking' ? 'Explore API Banking' : 'Explore Product'}
+                        {activeProduct.id === 'api-banking' ? 'Explore API Banking' :
+                         activeProduct.id === 'escrow' ? 'Explore Digital Escrow' :
+                         activeProduct.id === 'treasury' ? 'Explore Treasury' :
+                         activeProduct.id === 'regtech' ? 'Explore Regtech' :
+                         'Explore Product'}
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Button>
                       <Button variant="ghost" className="text-white hover:bg-white/5">

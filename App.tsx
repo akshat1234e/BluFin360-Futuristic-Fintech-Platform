@@ -11,6 +11,9 @@ import { TechnologyStack } from './components/TechnologyStack';
 import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
 import { ApiBankingPage } from './components/ApiBankingPage';
+import { DigitalEscrowPage } from './components/DigitalEscrowPage';
+import { TreasuryPage } from './components/TreasuryPage';
+import { RegtechPage } from './components/RegtechPage';
 
 // Homepage component
 function HomePage() {
@@ -108,6 +111,9 @@ export default function App() {
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/api-banking" element={<ApiBankingPage />} />
+                  <Route path="/digital-escrow" element={<DigitalEscrowPage />} />
+                  <Route path="/treasury" element={<TreasuryPage />} />
+                  <Route path="/regtech" element={<RegtechPage />} />
                 </Routes>
               </Suspense>
             </main>

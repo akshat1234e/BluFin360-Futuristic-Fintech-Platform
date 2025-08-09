@@ -19,21 +19,21 @@ const products = [
     name: 'Digital Escrow',
     description: 'Secure digital vault with automation',
     color: 'green',
-    route: null
+    route: '/digital-escrow'
   },
   {
     id: 'treasury',
     name: 'Treasury as a Service',
     description: 'Smart dashboard with predictive analytics',
     color: 'blue',
-    route: null
+    route: '/treasury'
   },
   {
     id: 'regtech',
     name: 'Regtech as a Service',
     description: 'Compliance command center',
     color: 'green',
-    route: null
+    route: '/regtech'
   },
   {
     id: 'virtual-accounts',

@@ -19,9 +19,9 @@ export function Footer() {
 
   const productLinks = [
     { name: 'API-First Banking', route: '/api-banking' },
-    { name: 'Digital Escrow', route: null },
-    { name: 'Treasury as a Service', route: null },
-    { name: 'Regtech as a Service', route: null },
+    { name: 'Digital Escrow', route: '/digital-escrow' },
+    { name: 'Treasury as a Service', route: '/treasury' },
+    { name: 'Regtech as a Service', route: '/regtech' },
     { name: 'Virtual Accounts', route: null },
     { name: 'BNPL Experience', route: null },
     { name: 'SME Credit Solutions', route: null }
