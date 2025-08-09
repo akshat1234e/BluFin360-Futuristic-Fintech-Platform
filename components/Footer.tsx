@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import {
   Twitter,
   Linkedin,
   Github,
   Mail,
-
   ArrowRight,
   Shield,
   Zap
@@ -15,6 +15,23 @@ import { LogoSVG } from './LogoSVG';
 
 
 export function Footer() {
+  const navigate = useNavigate();
+
+  const productLinks = [
+    { name: 'API-First Banking', route: '/api-banking' },
+    { name: 'Digital Escrow', route: null },
+    { name: 'Treasury as a Service', route: null },
+    { name: 'Regtech as a Service', route: null },
+    { name: 'Virtual Accounts', route: null },
+    { name: 'BNPL Experience', route: null },
+    { name: 'SME Credit Solutions', route: null }
+  ];
+
+  const handleProductClick = (link: typeof productLinks[0]) => {
+    if (link.route) {
+      navigate(link.route);
+    }
+  };
   return (
     <footer className="relative bg-black border-t border-white/10">
       {/* Background Elements */}
@@ -107,22 +124,23 @@ export function Footer() {
               >
                 <h4 className="font-black text-white mb-6">Products</h4>
                 <div className="space-y-3">
-                  {[
-                    'API-First Banking',
-                    'Digital Escrow',
-                    'Treasury as a Service',
-                    'Regtech as a Service',
-                    'Virtual Accounts',
-                    'BNPL Experience',
-                    'SME Credit Solutions'
-                  ].map((link) => (
-                    <a 
-                      key={link}
-                      href="#"
-                      className="block text-white/70 hover:text-[#00D4FF] transition-colors text-sm"
+                  {productLinks.map((link) => (
+                    <button
+                      key={link.name}
+                      onClick={() => handleProductClick(link)}
+                      className={`block text-left text-sm transition-colors ${
+                        link.route
+                          ? 'text-white/70 hover:text-[#00D4FF] cursor-pointer'
+                          : 'text-white/50 cursor-default'
+                      }`}
                     >
-                      {link}
-                    </a>
+                      {link.name}
+                      {link.route && (
+                        <span className="ml-1 text-xs opacity-0 hover:opacity-100 transition-opacity">
+                          →
+                        </span>
+                      )}
+                    </button>
                   ))}
                 </div>
               </motion.div>

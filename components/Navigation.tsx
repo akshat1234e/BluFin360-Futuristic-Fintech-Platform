@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { LogoSVG } from './LogoSVG';
@@ -7,45 +8,68 @@ import { LogoSVG } from './LogoSVG';
 
 const products = [
   {
+    id: 'api-banking',
     name: 'API-First Banking',
     description: 'Modular API blocks with data streams',
-    color: 'blue'
+    color: 'blue',
+    route: '/api-banking'
   },
   {
+    id: 'escrow',
     name: 'Digital Escrow',
     description: 'Secure digital vault with automation',
-    color: 'green'
+    color: 'green',
+    route: null
   },
   {
+    id: 'treasury',
     name: 'Treasury as a Service',
     description: 'Smart dashboard with predictive analytics',
-    color: 'blue'
+    color: 'blue',
+    route: null
   },
   {
+    id: 'regtech',
     name: 'Regtech as a Service',
     description: 'Compliance command center',
-    color: 'green'
+    color: 'green',
+    route: null
   },
   {
+    id: 'virtual-accounts',
     name: 'Virtual Account Solutions',
     description: 'Interconnected virtual accounts',
-    color: 'blue'
+    color: 'blue',
+    route: null
   },
   {
+    id: 'bnpl',
     name: 'BNPL Experience',
     description: 'Instant credit engine',
-    color: 'green'
+    color: 'green',
+    route: null
   },
   {
+    id: 'sme-credit',
     name: 'SME Credit Solutions',
     description: 'Digital lending platform',
-    color: 'blue'
+    color: 'blue',
+    route: null
   }
 ];
 
 export function Navigation() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleProductClick = (product: typeof products[0]) => {
+    if (product.route) {
+      navigate(product.route);
+      setIsProductsOpen(false);
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   return (
     <motion.nav
@@ -92,15 +116,29 @@ export function Navigation() {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.05 }}
-                          className="group p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
+                          onClick={() => handleProductClick(product)}
+                          className={`group p-3 rounded-lg transition-colors ${
+                            product.route
+                              ? 'cursor-pointer hover:bg-white/5'
+                              : 'cursor-default hover:bg-white/2'
+                          }`}
                         >
                           <div className="flex items-start space-x-3">
                             <div className={`w-2 h-2 rounded-full mt-2 ${
                               product.color === 'blue' ? 'bg-[#00D4FF]' : 'bg-[#00FF88]'
                             }`}></div>
                             <div>
-                              <h4 className="text-white group-hover:text-[#00D4FF] transition-colors font-medium">
+                              <h4 className={`font-medium transition-colors ${
+                                product.route
+                                  ? 'text-white group-hover:text-[#00D4FF]'
+                                  : 'text-white/70'
+                              }`}>
                                 {product.name}
+                                {product.route && (
+                                  <span className="ml-2 text-xs text-[#00D4FF] opacity-0 group-hover:opacity-100 transition-opacity">
+                                    →
+                                  </span>
+                                )}
                               </h4>
                               <p className="text-sm text-white/70 mt-1">
                                 {product.description}

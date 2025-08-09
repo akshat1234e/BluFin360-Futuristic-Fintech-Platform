@@ -13,7 +13,6 @@ import {
   ParallaxElement,
   ParallaxContainer,
   ParallaxBackground,
-  useParallax,
   useReducedMotion
 } from './ui/parallax';
 
